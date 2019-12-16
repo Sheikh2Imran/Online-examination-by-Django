@@ -15,7 +15,7 @@ class Exam(models.Model):
         ]
 
     def __str__(self):
-        return "Exam title: {}, time for this exam: {} minutes".format(self.title, self.time)
+        return "Exam title: {}".format(self.title)
 
 
 class ExamQuestion(models.Model):
