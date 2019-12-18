@@ -8,29 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <div class="card">
+        <div class="card" style="margin-top: 30px">
             <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
           <div class="card-body" style="margin-left:350px">
-              <h5>This title is for exam question ?</h5>
-              <form>
+              <center>{% for question_data in questions %}</center>
+              <form action="" method="post">
+                  {% csrf_token %}
+                  <input type="text" name="question" readonly value="{{ question_data.question }}" style="border:none; font-size:20px">
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                      <label class="form-check-label" for="exampleRadios1">Option 1</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios1" value="{{ question_data.option1 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option1 }}</label>
                   </div>
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1">
-                      <label class="form-check-label" for="exampleRadios1">Option 2</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios2" value="{{ question_data.option2 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option2 }}</label>
                   </div>
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option1">
-                      <label class="form-check-label" for="exampleRadios1">Option 3</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios3" value="{{ question_data.option3 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option3 }}</label>
                   </div>
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option1">
-                      <label class="form-check-label" for="exampleRadios1">Option 4</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios4" value="{{ question_data.option4 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option4 }}</label>
                   </div>
-                  <button type="submit" class="btn btn-primary" style="margin-left:320px">Next Question</button>
+                  <button type="submit" class="btn btn-primary" style="margin-top:20px">Next Question</button>
               </form>
+              {% endfor %}
 		</div>
           </div>
           <div class="card-footer text-muted">

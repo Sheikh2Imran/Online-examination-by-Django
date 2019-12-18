@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.postgres.indexes import BrinIndex
 
 from exam.models import ExamQuestion
+from questions.models import Subject
 
 
 class UserManager(models.Manager):
@@ -30,11 +31,27 @@ class User(models.Model):
         return "Username: {}".format(self.name)
 
 
+class UserAnswerManager(models.Manager):
+
+    def store_user_answer(self, session_data, requested_data):
+        try:
+            user = User.objects.get(id=session_data['user_id'])
+            subject = Subject.objects.get(id=session_data['subject_id'])
+            return self.create(
+                user=user, subject=subject, question=requested_data['question'], answer=requested_data['user_answer'])
+        except Exception as e:
+            print(e)
+            return False
+
+
 class UserAnswer(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    exam_question = models.ForeignKey(ExamQuestion, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    question = models.CharField(max_length=200)
     answer = models.CharField(max_length=100)
+
+    objects = UserAnswerManager()
 
     class Meta:
         indexes = [

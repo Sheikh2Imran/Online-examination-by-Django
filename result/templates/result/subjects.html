@@ -8,25 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="card text-center">
-            <div class="card-header"><h1>Ergo Ventures Pvt. Ltd.</h1></div>
+        <div class="card" style="margin-top: 30px">
+            <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
           <div class="card-body">
-            <h4 class="card-title">Examination Subjects List</h4>
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
-                  This is a dark list group item</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
-                  This is a dark list group item</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
-                  This is a dark list group item</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
-                  This is a dark list group item</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
-                  This is a dark list group item</a>
-            </div>
+              <h4 class="card-title"><center>Examination Subjects List</center></h4>
+                <form action="" method="post" style="margin-left: 450px">
+                {% csrf_token %}
+                {% for subject in subjects %}
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="id" id="exampleRadios1" value="{{ subject.id }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ subject.subject_name }}</label>
+                  </div>
+                {% endfor %}
+                  <button type="submit" class="btn btn-primary" style="margin-top:20px">Start Exam</button>
+              </form>
           </div>
           <div class="card-footer text-muted">
-            Designed and Developed by Md Imran Sheikh
+              <center>Designed and Developed by Md Imran Sheikh</center>
           </div>
         </div>
     </div>

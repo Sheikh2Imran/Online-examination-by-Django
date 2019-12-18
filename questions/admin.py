@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from questions.models import Subject, Question, Answer, Option
+from questions.models import Subject, Question
 
 admin.site.register(Subject)
 admin.site.register(Question)
-admin.site.register(Answer)
-admin.site.register(Option)

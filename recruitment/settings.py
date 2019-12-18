@@ -37,6 +37,7 @@ LOCAL_INSTALLED_APPS = [
     'exam',
     'questions',
     'result',
+    'pagination',
 ]
 
 INSTALLED_APPS = SYSTEM_INSTALLED_APPS + LOCAL_INSTALLED_APPS
