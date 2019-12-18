@@ -26,12 +26,6 @@ class Subject(models.Model):
         return "{}".format(self.subject_name)
 
 
-class QuestionManager(models.Manager):
-
-    def get_question(self, subject):
-        return self.filter(subject=subject)
-
-
 class Question(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True, editable=False)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -41,8 +35,6 @@ class Question(models.Model):
     option2 = models.CharField(max_length=200, default="")
     option3 = models.CharField(max_length=200, default="")
     option4 = models.CharField(max_length=200, default="")
-
-    objects = QuestionManager()
 
     class Meta:
         indexes = [

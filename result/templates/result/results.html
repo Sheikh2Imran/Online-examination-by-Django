@@ -23,27 +23,15 @@
                     </tr>
                   </thead>
                   <tbody>
+                  {% for result in results %}
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>@mdo</td>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ result.user.name }}</td>
+                      <td>{{ result.user.email }}</td>
+                      <td>{{ result.score }}</td>
+                      <td>{{ time_spent }}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>@fat</td>
-                    </tr>
+                  {% endfor %}
                   </tbody>
                 </table>
 		</div>

@@ -7,5 +7,5 @@ class UserForm(forms.Form):
     email = models.EmailField(max_length=256)
 
 
-class SubjectForm(forms.Form):
+class ExamForm(forms.Form):
     id = models.IntegerField()

@@ -14,22 +14,22 @@
               <center>{% for question_data in questions %}</center>
               <form action="" method="post">
                   {% csrf_token %}
-                  <input type="text" name="question" readonly value="{{ question_data.question }}" style="border:none; font-size:20px">
+                  <input type="text" name="question" readonly value="{{ question_data.question.question }}" style="border:none; font-size:20px">
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios1" value="{{ question_data.option1 }}">
-                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option1 }}</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios1" value="{{ question_data.question.option1 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option1 }}</label>
                   </div>
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios2" value="{{ question_data.option2 }}">
-                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option2 }}</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios2" value="{{ question_data.question.option2 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option2 }}</label>
                   </div>
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios3" value="{{ question_data.option3 }}">
-                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option3 }}</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios3" value="{{ question_data.question.option3 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option3 }}</label>
                   </div>
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios4" value="{{ question_data.option4 }}">
-                      <label class="form-check-label" for="exampleRadios1">{{ question_data.option4 }}</label>
+                      <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios4" value="{{ question_data.question.option4 }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option4 }}</label>
                   </div>
                   <button type="submit" class="btn btn-primary" style="margin-top:20px">Next Question</button>
               </form>

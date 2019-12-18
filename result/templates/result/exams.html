@@ -11,13 +11,13 @@
         <div class="card" style="margin-top: 30px">
             <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
           <div class="card-body">
-              <h4 class="card-title"><center>Examination Subjects List</center></h4>
-                <form action="" method="post" style="margin-left: 450px">
+              <h4 class="card-title"><center>Examination List</center></h4>
+                <form action="" method="post" style="margin-left: 400px">
                 {% csrf_token %}
-                {% for subject in subjects %}
+                {% for exam in exams %}
                   <div class="form-check">
-                      <input class="form-check-input" type="radio" name="id" id="exampleRadios1" value="{{ subject.id }}">
-                      <label class="form-check-label" for="exampleRadios1">{{ subject.subject_name }}</label>
+                      <input class="form-check-input" type="radio" name="id" id="exampleRadios1" value="{{ exam.id }}">
+                      <label class="form-check-label" for="exampleRadios1">{{ exam.title }}</label>
                   </div>
                 {% endfor %}
                   <button type="submit" class="btn btn-primary" style="margin-top:20px">Start Exam</button>

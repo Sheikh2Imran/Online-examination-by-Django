@@ -1,21 +1,23 @@
 from django.db import models
 
-from questions.models import Question
+from exam.models import ExamQuestion
 
 
 class PaginationManager(models.Manager):
     def create_pagination(self, session_data):
-        total_obj = Question.objects.filter(subject_id=session_data['subject_id']).count()
-        return self.create(user_id=session_data['user_id'], total_obj=total_obj, subject_id=session_data['subject_id'])
+        total_obj = ExamQuestion.objects.filter(exam__id=session_data['exam_id']).count()
+        return self.create(user_id=session_data['user_id'], total_obj=total_obj, exam_id=session_data['exam_id'])
 
     def update_pagination(self, session_data):
-        pagination_data = self.get(user_id=session_data['user_id'], subject_id=session_data['subject_id'])
-        start = pagination_data.start + 1
-        end = pagination_data.end + 1
-        updated_data = self.filter(user_id=session_data['user_id'], subject_id=session_data['subject_id']).update(
-            start=start, end=end)
-        if updated_data:
-            return self.get(user_id=session_data['user_id'], subject_id=session_data['subject_id'])
+        try:
+            pagination_data = self.get(user_id=session_data['user_id'], exam_id=session_data['exam_id'])
+            pagination_data.start += 1
+            pagination_data.end += 1
+            pagination_data.save()
+            return self.get(user_id=session_data['user_id'], exam_id=session_data['exam_id'])
+        except Exception as e:
+            print(e)
+            return False
 
 
 class Pagination(models.Model):
@@ -23,6 +25,6 @@ class Pagination(models.Model):
     start = models.IntegerField(default=0)
     end = models.IntegerField(default=1)
     total_obj = models.IntegerField()
-    subject_id = models.IntegerField(null=True)
+    exam_id = models.IntegerField(null=True)
 
     objects = PaginationManager()
