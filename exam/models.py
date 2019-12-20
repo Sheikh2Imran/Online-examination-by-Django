@@ -12,7 +12,7 @@ class ExamManager(models.Manager):
 class Exam(models.Model):
     id = models.AutoField(primary_key=True, unique=True, editable=False)
     title = models.CharField(max_length=100, null=False, blank=False)
-    time = models.FloatField(help_text='total time should be in minutes')
+    total_time = models.FloatField(help_text='total time should be in minutes')
     is_published = models.BooleanField(default=False)
 
     objects = ExamManager()
@@ -27,14 +27,27 @@ class Exam(models.Model):
 
 
 class ExamQuestionManager(models.Manager):
-    def get_exam_questions(self, exam_id):
-        return self.filter(exam__id=exam_id).order_by('id')
+
+    def get_exam_question(self, exam_id):
+        return self.filter(exam=exam_id)
+
+    def get_first_question(self, exam_id):
+        self.set_question_time(exam_id)
+        return self.filter(exam__id=exam_id)
+
+    def set_question_time(self, exam_id):
+
+        total_question = self.filter(exam_id=exam_id).count()
+        exam_obj = Exam.objects.get(id=exam_id)
+        time_per_question = int(exam_obj.total_time / total_question)*60
+        self.filter(exam=exam_id).update(time_per_question=time_per_question)
 
 
 class ExamQuestion(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True, editable=False)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    time_per_question = models.IntegerField(default=0)
 
     objects = ExamQuestionManager()
 

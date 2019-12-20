@@ -3,6 +3,7 @@ from django.contrib.postgres.indexes import BrinIndex
 
 from exam.models import ExamQuestion, Exam
 from questions.models import Subject, Question
+from result.utils import data_parser
 
 
 class UserManager(models.Manager):
@@ -38,21 +39,25 @@ class UserAnswerManager(models.Manager):
             user = User.objects.get(id=session_data['user_id'])
             exam = Exam.objects.get(id=session_data['exam_id'])
 
+            time_spent = data_parser.get_spent_time(requested_data['total_time'], exam, requested_data['question'])
             answered_object = self.create(user=user, exam=exam, question=requested_data['question'],
-                                        answer=requested_data['user_answer'])
+                                          answer=requested_data['user_answer'], time_spent=time_spent)
             if answered_object:
                 question_object = Question.objects.get(question=requested_data['question'])
-                # TODO: first data do not match, why ?
+                user_result, created = UserResult.objects.get_or_create(user=user, exam=exam)
                 if requested_data['user_answer'] == question_object.answer:
-                    user_result, created = UserResult.objects.get_or_create(user=user, exam=exam)
                     user_result.score += 1
+                    user_result.total_time_spent += time_spent
                     user_result.save()
-                return answered_object
-            else:
-                False
+                else:
+                    user_result.total_time_spent += time_spent
+                    user_result.save()
+            return answered_object
         except Exception as e:
-            print(e)
             return False
+
+    def get_user_answer(self, session_data):
+        return self.filter(user=session_data['user_id'], exam=session_data['exam_id'])
 
 
 class UserAnswer(models.Model):
@@ -61,6 +66,7 @@ class UserAnswer(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, default="")
     question = models.CharField(max_length=200)
     answer = models.CharField(max_length=100)
+    time_spent = models.IntegerField()
 
     objects = UserAnswerManager()
 
@@ -78,9 +84,8 @@ class UserResultManager(models.Manager):
     def get_user_result(self, exam_id):
         try:
             exam = Exam.objects.get(id=exam_id)
-            return self.filter(exam=exam).order_by('score')
+            return self.filter(exam=exam).order_by('-score', '-total_time_spent')
         except Exception as e:
-            print(e)
             return False
 
 
@@ -89,7 +94,7 @@ class UserResult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, default="")
     score = models.IntegerField(default=0)
-    time_spent = models.FloatField(help_text='time should be in minutes', null=True)
+    total_time_spent = models.IntegerField(default=0)
 
     objects = UserResultManager()
 
@@ -99,4 +104,4 @@ class UserResult(models.Model):
         ]
 
     def __str__(self):
-        return "{} || score: {} || Time spent: {}".format(self.user, self.score, self.time_spent)
+        return "{} || score: {}".format(self.user, self.score)

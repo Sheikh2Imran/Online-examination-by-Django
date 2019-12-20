@@ -39,7 +39,7 @@ class ExamListView(View):
 class ExamView(View):
     def get(self, request):
         page = Pagination.objects.create_pagination(request.session)
-        questions = ExamQuestion.objects.get_exam_questions(request.session['exam_id'])[page.start:page.end]
+        questions = ExamQuestion.objects.get_first_question(request.session['exam_id'])[page.start:page.end]
         return render(request, 'result/exam.html', {'questions': questions})
 
     def post(self, request):
@@ -47,11 +47,17 @@ class ExamView(View):
         if not answered_obj:
             return render(request, 'result/exams.html')
         page = Pagination.objects.update_pagination(request.session)
-        questions = ExamQuestion.objects.get_exam_questions(request.session['exam_id'])[page.start:page.end]
+        questions = ExamQuestion.objects.get_exam_question(request.session['exam_id'])[page.start:page.end]
         if questions:
             return render(request, 'result/exam.html', {'questions': questions})
         else:
             return redirect('result/')
+
+
+class AnswerView(View):
+    def get(self, request):
+        answers = UserAnswer.objects.get_user_answer(request.session)
+        return render(request, 'result/answers.html', {'answers': answers})
 
 
 class ResultView(View):

@@ -19,7 +19,7 @@
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Marks</th>
-                      <th scope="col">Time Spent</th>
+                      <th scope="col">Time Spent(S)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -29,7 +29,12 @@
                       <td>{{ result.user.name }}</td>
                       <td>{{ result.user.email }}</td>
                       <td>{{ result.score }}</td>
-                      <td>{{ time_spent }}</td>
+                       {% load mathfilters %}
+                       {% if total_time_spent > 60 %}
+                        <td>{{ result.total_time_spent|div:60 }}</td>
+                        {% else %}
+                        <td>{{ result.total_time_spent }}</td>
+                        {% endif %}
                     </tr>
                   {% endfor %}
                   </tbody>
