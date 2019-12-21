@@ -2,6 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <!-- jquery js -->
+        {% load static %}
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="{% static 'jquery.redirect.js' %}"></script>
+        <!-- bootstrap css and js -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <title>Title</title>
@@ -14,7 +20,7 @@
                   {% for question_data in questions %}
                   <form action="" method="post" style="margin-left:300px">
                       {% csrf_token %}
-                      <input type="text" name="question" readonly value="{{ question_data.question.question }}" style="border:none; font-size:24px; margin-bottom:10px">
+                      <input type="text" id="question" name="question" readonly value="{{ question_data.question.question }}" style="border:none; font-size:24px; margin-bottom:10px">
                       <div class="form-check">
                           <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios1" value="{{ question_data.question.option1 }}">
                           <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option1 }}</label>
@@ -43,24 +49,26 @@
 
                         // Update the count down every 1 second
                         var x = setInterval(function() {
-
-                          // Get today's date and time
                           var now = new Date().getTime();
 
-                          // Find the distance between now and the count down date
                           var distance = countDownDate - now;
-
-                          // Time calculations for minutes and seconds
                           var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                          // Output the result in an element with id="demo"
-                          document.getElementById("demo").value =minutes + ":" + seconds;
+                          document.getElementById("demo").value=minutes + ":" + seconds;
 
-                          // If the count down is over, write some text
-                          if (distance < 0) {
+                          if (distance <= 0) {
                             clearInterval(x);
-                            document.getElementById("demo").value = "EXPIRED";
+                            url = window.location.href
+                            var question = document.getElementById('question').value;
+                            var total_time = document.getElementById('demo').value;
+                            var requested_data = {
+                                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                                        question: question,
+                                        total_time: total_time,
+                                        user_answer: "",
+                                       }
+                            $.redirect(url, requested_data, "POST");
                           }
                         }, 1000);
                     </script>

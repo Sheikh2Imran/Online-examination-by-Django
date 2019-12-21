@@ -36,10 +36,9 @@ class ExamQuestionManager(models.Manager):
         return self.filter(exam__id=exam_id)
 
     def set_question_time(self, exam_id):
-
-        total_question = self.filter(exam_id=exam_id).count()
+        total_question = self.filter(exam=exam_id).count()
         exam_obj = Exam.objects.get(id=exam_id)
-        time_per_question = int(exam_obj.total_time / total_question)*60
+        time_per_question = (exam_obj.total_time/total_question)*60
         self.filter(exam=exam_id).update(time_per_question=time_per_question)
 
 

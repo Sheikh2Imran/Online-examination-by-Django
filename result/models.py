@@ -40,12 +40,13 @@ class UserAnswerManager(models.Manager):
             exam = Exam.objects.get(id=session_data['exam_id'])
 
             time_spent = data_parser.get_spent_time(requested_data['total_time'], exam, requested_data['question'])
+            print(time_spent)
             answered_object = self.create(user=user, exam=exam, question=requested_data['question'],
-                                          answer=requested_data['user_answer'], time_spent=time_spent)
+                                          answer=requested_data.get('user_answer', ''), time_spent=time_spent)
             if answered_object:
                 question_object = Question.objects.get(question=requested_data['question'])
                 user_result, created = UserResult.objects.get_or_create(user=user, exam=exam)
-                if requested_data['user_answer'] == question_object.answer:
+                if requested_data.get('user_answer', '') == question_object.answer:
                     user_result.score += 1
                     user_result.total_time_spent += time_spent
                     user_result.save()
@@ -54,6 +55,7 @@ class UserAnswerManager(models.Manager):
                     user_result.save()
             return answered_object
         except Exception as e:
+            print(e)
             return False
 
     def get_user_answer(self, session_data):
@@ -65,7 +67,7 @@ class UserAnswer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, default="")
     question = models.CharField(max_length=200)
-    answer = models.CharField(max_length=100)
+    answer = models.CharField(max_length=100, default="")
     time_spent = models.IntegerField()
 
     objects = UserAnswerManager()
@@ -84,7 +86,7 @@ class UserResultManager(models.Manager):
     def get_user_result(self, exam_id):
         try:
             exam = Exam.objects.get(id=exam_id)
-            return self.filter(exam=exam).order_by('-score', '-total_time_spent')
+            return self.filter(exam=exam).order_by('-score', 'total_time_spent')
         except Exception as e:
             return False
 
