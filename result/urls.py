@@ -7,5 +7,5 @@ urlpatterns = [
     path('exams/', ExamListView.as_view(), name='exam list'),
     path('exams/exam/', ExamView.as_view(), name='exam'),
     path('exams/exam/answer/', AnswerView.as_view(), name='answer'),
-    path('exams/exam/result/', ResultView.as_view(), name='result'),
+    path('exams/exam/answer/result/', ResultView.as_view(), name='result'),
 ]

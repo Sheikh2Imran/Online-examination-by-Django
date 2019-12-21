@@ -2,31 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>Ergo</title>
 </head>
 <body>
-    <div class="container">
-        <div class="card" style="margin-top: 30px">
-            <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
-          <div class="card-body">
-              <h4><center>Recruitment Examination Exam List</center></h4>
-                <form action="" method="post" style="margin-left: 400px">
+<div class="container">
+    <div class="card" style="margin-top: 30px">
+        <div class="card-header">
+            <h1>
+                <center>Ergo Ventures Pvt. Ltd.</center>
+            </h1>
+        </div>
+        <div class="card-body">
+            <h4>
+                <center>Recruitment Examination List</center>
+            </h4>
+            <form action="" method="post" style="margin-left: 400px; margin-top: 20px">
                 {% csrf_token %}
                 {% for exam in exams %}
-                  <div class="form-check">
-                      <input class="form-check-input" type="radio" name="id" id="exampleRadios1" value="{{ exam.id }}">
-                      <label class="form-check-label" for="exampleRadios1">{{ exam.title }}</label>
-                  </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="id" id="exampleRadios1" value="{{ exam.id }}">
+                    <label class="form-check-label" for="exampleRadios1">{{ exam.title }}</label>
+                </div>
                 {% endfor %}
-                  <button type="submit" class="btn btn-primary" style="margin-top:20px">Start Exam</button>
-              </form>
-          </div>
-          <div class="card-footer text-muted">
-              <center>Designed and Developed by Md Imran Sheikh</center>
-          </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:20px">Start Exam</button>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            <center>Designed and Developed by Md Imran Sheikh</center>
         </div>
     </div>
+</div>
+<!-- Exam rules modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle">MCQ Examination Terms and Conditions</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 style="line-height: 28px">The purpose of this examination system is recruitment. Question will appear in one page per
+                    question. Question should be answered within allocated time per question. Otherwise next question
+                    will appear. The time to answer each question will be recorded. This recorded time will be used for
+                    ranking you if the other participants have equal score. The questions will be presented one at a
+                    time. You should finish answering within time limit. He can navigate to the next question. So
+                    there should be a next button. You don't have the facility of getting back to the previous question.
+                    The value of each question is one. After finishing the exam, the result will appear with rank(1st,
+                    2nd,3rd for multiple examinee). The result board will point out the correct and incorrect answers.
+
+                </h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, I acknowledged</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#exampleModalLong').modal('show');
+    });
+</script>
 </body>
 </html>

@@ -16,7 +16,6 @@ class PaginationManager(models.Manager):
             pagination_data.save()
             return self.get(user_id=session_data['user_id'], exam_id=session_data['exam_id'])
         except Exception as e:
-            print(e)
             return False
 
 
@@ -25,6 +24,6 @@ class Pagination(models.Model):
     start = models.IntegerField(default=0)
     end = models.IntegerField(default=1)
     total_obj = models.IntegerField()
-    exam_id = models.IntegerField(null=True)
+    exam_id = models.IntegerField()
 
     objects = PaginationManager()

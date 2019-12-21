@@ -7,20 +7,21 @@
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="{% static 'jquery.redirect.js' %}"></script>
+
         <!-- bootstrap css and js -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <title>Title</title>
+        <title>Ergo</title>
     </head>
     <body>
         <div class="container">
             <div class="card" style="margin-top: 30px">
                 <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
-              <div class="card-body" style="padding:70px; border-style:outside;">
+              <div class="card-body" style="padding:30px; border-style:outside;">
                   {% for question_data in questions %}
-                  <form action="" method="post" style="margin-left:300px">
+                  <form action="" method="post" style="margin-left:350px">
                       {% csrf_token %}
-                      <input type="text" id="question" name="question" readonly value="{{ question_data.question.question }}" style="border:none; font-size:24px; margin-bottom:10px">
+                      <input type="text" id="question" name="question" size="50" value="{{ question_data.question.question }}" style="border:none; font-size:24px; margin-bottom:10px;" readonly>
                       <div class="form-check">
                           <input class="form-check-input" type="radio" name="user_answer" id="exampleRadios1" value="{{ question_data.question.option1 }}">
                           <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option1 }}</label>
@@ -38,9 +39,9 @@
                           <label class="form-check-label" for="exampleRadios1">{{ question_data.question.option4 }}</label>
                       </div>
                       <span>
-                          <label class="col-sm-3" style="font-size:18px; margin-left:-230px">Time Remaining: </label>
-                          <input type="text" id="demo" name="total_time" readonly style="border:none; font-size:20px;">
-                          <button type="submit" class="btn btn-primary" style="margin-left:100px">Next Question</button>
+                          <label class="col-sm-3" style="font-size:18px; margin-left:-230px; margin-top: 20px;">Time Remaining: </label>
+                          <input type="text" id="demo" name="total_time" readonly style="border:none; font-size:20px; margin-top: 20px;">
+                          <button type="submit" class="btn btn-primary" style="margin-left:40px; margin-top: 20px;">Next Question</button>
                       </span>
                   </form>
                   <script>

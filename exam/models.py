@@ -5,8 +5,11 @@ from questions.models import Question
 
 
 class ExamManager(models.Manager):
-    def get_published_exams(self):
+    def get_all_published_exams(self):
         return self.filter(is_published=True)
+
+    def get_only_allowed_exams(self, exam_ids):
+        return self.exclude(is_published=True, id__in=exam_ids)
 
 
 class Exam(models.Model):
@@ -27,7 +30,6 @@ class Exam(models.Model):
 
 
 class ExamQuestionManager(models.Manager):
-
     def get_exam_question(self, exam_id):
         return self.filter(exam=exam_id)
 
@@ -46,7 +48,7 @@ class ExamQuestion(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True, editable=False)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    time_per_question = models.IntegerField(default=0)
+    time_per_question = models.IntegerField(default=0, editable=False)
 
     objects = ExamQuestionManager()
 

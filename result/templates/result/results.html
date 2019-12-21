@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <title>Title</title>
+    <title>Ergo</title>
 </head>
 <body>
     <div class="container">
         <div class="card" style="margin-top: 30px">
             <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
             <div class="card-body">
-                <h4><center>Result Board of MCQ Recruitment Examination</center></h4>
+                <h4><center>Ranking Board of MCQ Recruitment Examination</center></h4>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -19,22 +19,21 @@
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Marks</th>
-                      <th scope="col">Time Spent(S)</th>
+                      <th scope="col">Total Time Spent</th>
                     </tr>
                   </thead>
                   <tbody>
                   {% for result in results %}
                     <tr>
                       <th scope="row">{{ forloop.counter }}</th>
-                      <td>{{ result.user.name }}</td>
+                      {% if result.user.name == user.name %}
+                        <td style="color: green"><strong>{{ result.user.name }}</strong></td>
+                      {% else %}
+                        <td>{{ result.user.name }}</td>
+                      {% endif %}
                       <td>{{ result.user.email }}</td>
                       <td>{{ result.score }}</td>
-                       {% load mathfilters %}
-                       {% if total_time_spent > 60 %}
-                        <td>{{ result.total_time_spent|div:60 }}</td>
-                        {% else %}
-                        <td>{{ result.total_time_spent }}</td>
-                        {% endif %}
+                       <td>{{ result.total_time_spent }} Sec.</td>
                     </tr>
                   {% endfor %}
                   </tbody>
@@ -42,6 +41,7 @@
 		</div>
           </div>
           <div class="card-footer text-muted">
+              <center><a href="{% url 'exam list' %}"><button type="button" class="btn btn-success">Take Another Exam</button></a></center><br/>
               <center>Designed and Developed by Md Imran Sheikh</center>
           </div>
         </div>

@@ -4,31 +4,46 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <title>Title</title>
+        <title>Ergo</title>
     </head>
     <body>
         <div class="container">
             <div class="card" style="margin-top: 30px">
                 <div class="card-header"><h1><center>Ergo Ventures Pvt. Ltd.</center></h1></div>
                 <div class="card-body">
-                    <h4><center>Question Answer of MCQ Recruitment Examination</center></h4>
+                    <h4><center>Question Answer Of This Examination</center></h4>
                     <table class="table table-hover">
                       <thead>
                         <tr>
                           <th scope="col">No.</th>
                           <th scope="col">Question</th>
-                          <th scope="col">Answer</th>
-                          <th scope="col">Your Ans.</th>
+                          <th scope="col">Actual Answer</th>
+                          <th scope="col">Your Answer</th>
+                          <th scope="col">Spent Time</th>
                           <th scope="col">Result</th>
                         </tr>
                       </thead>
                       <tbody>
-
+                        {% for answer in answers %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ answer.question.question }}</td>
+                            <td>{{ answer.question.answer }}</td>
+                            <td>{{ answer.answer }}</td>
+                            <td>{{ answer.time_spent }} Sec.</td>
+                            {% if answer.question.answer == answer.answer %}
+                                <td style="color:green">Correct</td>
+                            {% else %}
+                                <td style="color:red">Incorrect</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
             </div>
               </div>
               <div class="card-footer text-muted">
+                  <center><a href="{% url 'result' %}"><button type="button" class="btn btn-success">See Your Rank From Here</button></a></center><br>
                   <center>Designed and Developed by Md Imran Sheikh</center>
               </div>
             </div>
