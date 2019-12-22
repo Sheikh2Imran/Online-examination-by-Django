@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <!-- jquery js -->
-        {% load static %}
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        {% load static %}
         <script src="{% static 'jquery.redirect.js' %}"></script>
 
         <!-- bootstrap css and js -->
@@ -81,5 +81,13 @@
               </div>
             </div>
         </div>
+    <script>
+        $(document).ready(function() {
+        function disableBack() { window.history.forward() }
+
+        window.onload = disableBack();
+        window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+        });
+    </script>
     </body>
 </html>

@@ -6,7 +6,7 @@ from exam.models import ExamQuestion
 class PaginationManager(models.Manager):
     def create_pagination(self, session_data):
         total_obj = ExamQuestion.objects.filter(exam__id=session_data['exam_id']).count()
-        return self.create(user_id=session_data['user_id'], total_obj=total_obj, exam_id=session_data['exam_id'])
+        return self.get_or_create(user_id=session_data['user_id'], total_obj=total_obj, exam_id=session_data['exam_id'])
 
     def update_pagination(self, session_data):
         try:

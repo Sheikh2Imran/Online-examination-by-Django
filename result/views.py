@@ -43,7 +43,7 @@ class ExamListView(View):
 
 class ExamView(View):
     def get(self, request):
-        page = Pagination.objects.create_pagination(request.session)
+        page, created = Pagination.objects.create_pagination(request.session)
         questions = ExamQuestion.objects.get_first_question(request.session['exam_id'])[page.start:page.end]
         return render(request, 'result/exam.html', {'questions': questions})
 
