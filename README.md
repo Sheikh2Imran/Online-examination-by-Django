@@ -27,7 +27,8 @@ postgres@user:~$  exit
 ```
 Installing virtualenv is very simple. Just run the command below:
 ```bash
-$ sudo apt-get install python-virtualenv
+$ sudo apt-get install python3-pip
+$ sudo pip3 install virtualenv 
 ```
 Now let’s create a virtualenv
 ```bash
