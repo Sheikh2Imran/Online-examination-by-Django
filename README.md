@@ -30,10 +30,16 @@ Installing virtualenv is very simple. Just run the command below:
 $ sudo apt-get install python3-pip
 $ sudo pip3 install virtualenv 
 ```
+Now you just need to clone this project from github.
+```bash
+$ git clone https://github.com/Sheikh2Imran/MCQ-Recruitment-Exam-with-Django.git
+```
+There are total 9 branch. Checkout from the latest branch. 
+```bash
+$ git checkout development_V1.0
+```
 Now let’s create a virtualenv
 ```bash
-$ mkdir recruitment
-$ cd recruitment
 $ sudo virtualenv venv
 ```
 Now you need to activate our virtualenv so that when you install Python packages they install to your virtualenv. This is how you activate your virtualenv:
@@ -41,19 +47,7 @@ Now you need to activate our virtualenv so that when you install Python packages
 $ source venv/bin/activate
 ```
 You should now see that “(venv)” has been appended to the beginning of your terminal prompt.
-Now you just need to clone this project from github.
-```bash
-(venv) $ git clone https://github.com/Sheikh2Imran/MCQ-Recruitment-Exam-with-Django.git
-```
-There are total 9 branch. Checkout from the latest branch. 
-```bash
-(venv) $ git checkout development_V1.0
-```
 
-Now make sure your virtualenv is active
-```bash
-$ source venv/bin/activate
-```
 Now install all pip package from requirements.txt
 ```bash
 (venv) $ pip install -r requirements.txt
