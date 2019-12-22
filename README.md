@@ -69,8 +69,8 @@ After migration, you can create a super user as you will.
 (venv) $ python manage.py createsuperuser
 Username: admin
 Email address: admin1234@gmail.com
-Password: userpassword
-Password (again): userpassword
+Password: admin123
+Password (again): admin123
 ```
 Now all you need to run your project.
 ```bash
