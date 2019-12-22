@@ -57,6 +57,8 @@ Now install all pip package from requirements.txt
 ```bash
 (venv) $ pip install -r requirements.txt
 ```
+Now you need a local_settings.py file to get all the configuration. Go to recruitment folder and rename local_settings_example.py to local_settings.py.
+
 Now you need to makemigrations and migrate to migrate your database.
 ```bash
 (venv) $ python manage.py makemigrations
