@@ -90,7 +90,7 @@ First of all, enter admin panel by hitting your local url in your web browser.
 http://127.0.0.1:8000/admin/
 ```
 Admin have to login first
-![GitHub Logo](/home/imran/login.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/login.png)
 
 Give these credentials.
 ```bash
@@ -99,54 +99,54 @@ username: admin123
 ```
 After successful logged in, admin will see the interface. Here admin can control all the users and examinations.
 
-![GitHub Logo](/home/imran/home.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/home.png)
 
 ### Add subject:
 Admin will add subject from home page. After click on subjects admin will see a list of subjects which he/she have already added.
 
-![GitHub Logo](/home/imran/subject.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/subject.png)
 
 Admin can add a new subject from add subject.
 
-![GitHub Logo](/home/imran/addsubject.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/addsubject.png)
 
 ### Add question:
 Admin will add question from home page. After click on Questions, admin will see a list of questions which he/she have already added.
 
-![GitHub Logo](/home/imran/questions.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/questions.png)
 
 Admin can add a new question from add question.
 
-![GitHub Logo](/home/imran/Addquestion.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/Addquestion.png)
 
 Here admin should select subject from subject drop down. The add question, correct answer and so on.
 
 ### Add exam:
 After adding subject and questions admin can create an exam will proper title. To add a new examination admin will go exams from the home page.
 
-![GitHub Logo](/home/imran/exams.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/exams.png)
 
 Here admin will see a list of examination. These examinations he/she already added. Admin can create a new one from ADD EXAM. 
 
 After clicking ADD EXAM, admin will show a form. Give the title of the exam and time for this exam. Examination time should be in minutes. But wait !! Do not make it published before adding questions into it. Ok how you can add questions into a exam we will see it in the few minutes. 
 
-![GitHub Logo](/home/imran/addexam.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/addexam.png)
 
 ### Add exam's questions:
 Click on Exam questions from home page, admin will see a list of questions which he already added to other exams.
 
-![GitHub Logo](/home/imran/addexam.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/addexam.png)
 
 Now add some questions to our new created exam from ADD QUESTIONS.
 
-![GitHub Logo](/home/imran/addquestoexam.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/addquestoexam.png)
 
 Add exam from exam list and add question from question list.
 
 ### Publish an exam:
 Now its time to publish a exam. Go to exams from home page and then click on your desired exam. After that make checked on is_published button. After that examinee will see the exam from his exam list page.
 
-![GitHub Logo](/home/imran/publish.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/publish.png)
 
 Admin will also examinee list, their answer sheet and results from Home page bu clicking Users, User answers, User results respectively.
 
@@ -158,35 +158,35 @@ http://127.0.0.1:8000/admin/
 ## Enter examination system
 Examinee have to give his name and email to enter examination system. This is not a login system. He just give his name and password to identify himself in examination result board.
 
-![GitHub Logo](/home/imran/userlogin.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/userlogin.png)
 
 ## Acknowledgement
 After that, a terms and conditions pop up will appear. Examinee will hit the "Ok, i acknowledged" button. 
 
-![GitHub Logo](/home/imran/tc.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/tc.png)
 
 ## Examination list
 After that, examinee will see a exam list. He/she can choose a  examination from this list and press "Start Exam" button.
 
-![GitHub Logo](/home/imran/userquestions.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/userquestions.png)
 
 ## Give exam
 Then the exam will start. Here a time is allocated for per question. Examinee should answer within this time otherwise next question will appear. 
 
-![GitHub Logo](/home/imran/giveexam.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/giveexam.png)
 
 Examinee should select an answer and then press "Next Question" button. Then next question will be appeared.
 
 # Examinee's Question answer
 After completing all questions from exam, finally examinee will see the answer sheet and can see the question wise result and the time he/she spent. 
 
-![GitHub Logo](/home/imran/answers.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/answers.png)
 
 # Examinees Ranking
 
 By clicking "See Your Rank From Here" examinee can see his raking with his marks and time spent. Point to be noted that per question's mark is one (1).
 
-![GitHub Logo](/home/imran/exraking.png)
+![GitHub Logo](/home/imran/PycharmProjects/recruitment/images/exraking.png)
 
 N.B: If two examinee's marks is the same then spent time is a factor of ranking. 
 
