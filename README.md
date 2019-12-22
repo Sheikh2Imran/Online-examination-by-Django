@@ -1,5 +1,5 @@
 # MCQ Recruitment Exam With Django
-The purpose of this examination system is recruitment. Question will appear in one page per question. Question should be answered within allocated time per question. Otherwise next question will appear. The time to answer each question will be recorded. This recorded time will be used for ranking you if the other participants have equal score. The questions will be presented one at a time. You should finish answering within time limit. He can navigate to the next question. So there should be a next button. You don't have the facility of getting back to the previous question. The value of each question is one. After finishing the exam, the result will appear with rank(1st, 2nd,3rd for multiple examinee). The result board will point out the correct and incorrect answers.
+The purpose of this examination system is recruitment. Question will appear in one page per question. Question should be answered within allocated time per question. Otherwise next question will appear. The time to answer each question will be recorded. This recorded time will be used for ranking examinee if the other participants have equal score. The questions will be presented one at a time. Examinee should finish answering within time limit. He/She can navigate to the next question. So there are a next button. Examinee don't have the facility of getting back to the previous question. The value of each question is one. After finishing the exam, the result will appear with rank(1st, 2nd,3rd for multiple examinee). The result board will point out the correct and incorrect answers.
 
 ## Installation
 Before you do anything, you need to make sure that all the packages installed on our VPS are up to date. Open your terminal and type this comands.
@@ -74,7 +74,7 @@ Now all you need to run your project.
 ```bash
 (venv) $ python manage.py runserver
 ```
-## In our project, You have two kind of roles.
+## In this project, You have two kind of roles.
 1. Admin
     * Admin can control the whole operation.
     * Admin will set question and time for the questions.
@@ -135,8 +135,6 @@ After clicking ADD EXAM, admin will show a form. Give the title of the exam and 
 ### Add exam's questions:
 Click on Exam questions from home page, admin will see a list of questions which he already added to other exams.
 
-![ScreenShot](images/addexam.png)
-
 Now add some questions to our new created exam from ADD QUESTIONS.
 
 ![ScreenShot](images/addquestoexam.png)
@@ -163,7 +161,7 @@ Examinee have to give his name and email to enter examination system. This is no
 ## Acknowledgement
 After that, a terms and conditions pop up will appear. Examinee will hit the "Ok, i acknowledged" button. 
 
-![ScreenShot](/home/imran/PycharmProjects/recruitment/images/tc.png)
+![ScreenShot](images/tc.png)
 
 ## Examination list
 After that, examinee will see a exam list. He/she can choose a  examination from this list and press "Start Exam" button.
@@ -177,7 +175,7 @@ Then the exam will start. Here a time is allocated for per question. Examinee sh
 
 Examinee should select an answer and then press "Next Question" button. Then next question will be appeared.
 
-# Examinee's Question answer
+# Examinee's result board
 After completing all questions from exam, finally examinee will see the answer sheet and can see the question wise result and the time he/she spent. 
 
 ![ScreenShot](images/answers.png)
