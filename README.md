@@ -148,7 +148,7 @@ Admin will also examinee list, their answer sheet and results from Home page bu 
  ## Examinee activities
  First of all, enter admin panel by hitting your local url in your web browser.
 ```bash
-http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/ergo/
 ```
 ## Enter examination system
 Examinee have to give his name and email to enter examination system. This is not a login system. He just give his name and password to identify himself in examination result board.
