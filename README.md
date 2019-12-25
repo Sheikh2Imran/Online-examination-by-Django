@@ -7,14 +7,7 @@ Before you do anything, you need to make sure that all the packages installed on
 $ sudo apt-get update
 $ sudo apt-get upgrade
 ```
-Now we need to install postgresql. Most Django users prefer to use PostgreSQL as their database server. It is much more robust than MySQL and the Django ORM works much better with PostgreSQL than MySQL, MSSQL, or others. You need to install dependencies for PostgreSQL to work with Django with this command:
-```bash
-$ sudo apt-get install libpq-dev python-dev
-```
-Now that you have done this, install PostgreSQL like so:
-```bash
-$ sudo apt-get install postgresql postgresql-contrib
-```
+Now we need to install python 3.6 and postgresql. Most Django users prefer to use PostgreSQL as their database server. It is much more robust than MySQL and the Django ORM works much better with PostgreSQL than MySQL, MSSQL, or others. You need to install dependencies for PostgreSQL to work with Django.
 you need to create a database, create a user, and grant the user we created access to the database we created. 
 ```bash
 $ sudo su - postgres
@@ -92,7 +85,7 @@ Admin have to login first
 Give these credentials.
 ```bash
 username: admin
-username: admin123
+Password: admin123
 ```
 After successful logged in, admin will see the interface. Here admin can control all the users and examinations.
 
@@ -143,7 +136,7 @@ Now its time to publish a exam. Go to exams from home page and then click on you
 
 ![ScreenShot](images/publish.png)
 
-Admin will also examinee list, their answer sheet and results from Home page bu clicking Users, User answers, User results respectively.
+Admin will also see examinee list, their answer sheet and results from Home page bu clicking Users, User answers, User results respectively.
 
  ## Examinee activities
  First of all, enter admin panel by hitting your local url in your web browser.
@@ -151,7 +144,7 @@ Admin will also examinee list, their answer sheet and results from Home page bu 
 http://127.0.0.1:8000/ergo/
 ```
 ## Enter examination system
-Examinee have to give his name and email to enter examination system. This is not a login system. He just give his name and password to identify himself in examination result board.
+Examinee have to give his name and email to enter examination system. This is not a login system. He just give his name and email to identify himself in examination result board.
 
 ![ScreenShot](images/userlogin.png)
 
